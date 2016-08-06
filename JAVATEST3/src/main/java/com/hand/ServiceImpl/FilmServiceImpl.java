@@ -28,4 +28,8 @@ public class FilmServiceImpl implements FilmService {
 		
 		return fd.getFilmById(id);
 	}
+	public void UpdatetoFilm (String title,String description,int languageid,int filmid){
+		
+		fd.UpdatetoFilm(title, description, languageid,filmid);
+	}
 }

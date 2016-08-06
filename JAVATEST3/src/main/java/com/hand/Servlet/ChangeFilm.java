@@ -6,22 +6,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hand.Entity.Language;
 import com.hand.Service.FilmService;
-import com.hand.Service.LanguageService;
 import com.hand.ServiceImpl.FilmServiceImpl;
-import com.hand.ServiceImpl.LanguageServiceImpl;
 
 /**
- * Servlet implementation class AddFilm
+ * Servlet implementation class ChangeFilm
  */
-public class AddFilm extends HttpServlet {
+public class ChangeFilm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddFilm() {
+    public ChangeFilm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,13 +43,17 @@ public class AddFilm extends HttpServlet {
 		{
 			id=Integer.parseInt(languageid);
 		}
+		int filmid=0;
+		String Filmid=request.getParameter("filmid");
+		if(Filmid!=null)
+		{
+			filmid=Integer.parseInt(Filmid);
+		}
 		System.out.println(languageid);
 		String description=request.getParameter("description");
-		LanguageService ls=new LanguageServiceImpl();
-		Language l=ls.getLanguageById(id);
 		FilmService fs=new FilmServiceImpl();
-		fs.InserttoFilm(title, description, l.getLanguageid());
-		response.sendRedirect("index.jsp");
+		fs.UpdatetoFilm(title, description, id,filmid);
+        request.getRequestDispatcher("/FilmServlet").forward(request, response);		
 	}
 
 }

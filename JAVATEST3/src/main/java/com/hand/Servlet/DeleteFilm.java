@@ -7,9 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hand.Service.FilmActorService;
+import com.hand.Service.FilmCategoryService;
 import com.hand.Service.FilmService;
+import com.hand.Service.FilmtextService;
+import com.hand.Service.InventoryService;
 import com.hand.ServiceImpl.FilmActorServiceImpl;
+import com.hand.ServiceImpl.FilmCategoryServiceImpl;
 import com.hand.ServiceImpl.FilmServiceImpl;
+import com.hand.ServiceImpl.FilmtextServiceImpl;
+import com.hand.ServiceImpl.InventoryServiceImpl;
 
 /**
  * Servlet implementation class DeleteFilm
@@ -38,16 +44,24 @@ public class DeleteFilm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filmid=request.getParameter("filmid");
+//		String path=request.getServletPath();
 		int id=0;
 		if(filmid!=null)
 		{
 			id=Integer.parseInt(filmid);
 		}
 		System.out.println(id);
+		InventoryService is=new InventoryServiceImpl();
+		is.deletetoInventory(id);
 		FilmActorService fas=new FilmActorServiceImpl();
 		fas.deletetoFilmActor(id);
+		FilmCategoryService fcs=new FilmCategoryServiceImpl();
+		fcs.deletetoFilmCategoty(id);
+		FilmtextService fts=new FilmtextServiceImpl();
+		fts.deletetoFilmText(id);
 		FilmService fs=new FilmServiceImpl();
 		fs.deletetoFilm(id);
+		request.getRequestDispatcher("/FilmServlet").forward(request, response);
 	}
   
 }

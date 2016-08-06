@@ -1,5 +1,7 @@
 package com.hand.ServiceImpl;
 
+import java.util.List;
+
 import com.hand.Dao.LanguageDao;
 import com.hand.DaoImpl.LanguageDaoImpl;
 import com.hand.Entity.Language;
@@ -13,5 +15,9 @@ public class LanguageServiceImpl implements LanguageService {
 	}
 	public Language getLanguageByName(String name){
 		return ld.getLanguageByName(name);
+	}
+	
+	public List<Language> getLanguages() {
+		return ld.getLanguages();
 	}
 }

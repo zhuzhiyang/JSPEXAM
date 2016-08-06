@@ -9,11 +9,46 @@ import java.util.List;
 
 import com.hand.Dao.LanguageDao;
 import com.hand.Entity.Actor;
+import com.hand.Entity.Film;
 import com.hand.Entity.Language;
 import com.hand.Util.jdbCon;
 
 public class LanguageDaoImpl implements LanguageDao {
 	 jdbCon Con=jdbCon.getjdbCon();
+	 public List<Language> getLanguages() {
+			Connection con=Con.getConnection();
+			PreparedStatement pstm=null;
+			ResultSet rs=null;
+			List<Language> languages=new ArrayList<Language>();
+			try {
+				pstm=con.prepareStatement("select * from language ");
+				rs=pstm.executeQuery();
+				while(rs.next())
+				{
+					Language l=new Language();
+					l.setLanguageid(rs.getInt(1));
+					l.setName(rs.getString(2));
+					l.setLastupdate(rs.getDate(3));
+					languages.add(l);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				try {
+					rs.close();
+					pstm.close();
+					con.close();
+				} catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
+				
+				
+			}
+			
+			return languages;
+		}
 	    
 		public Language getLanguageById(int id) {
 			Connection con=Con.getConnection();

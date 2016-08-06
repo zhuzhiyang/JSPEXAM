@@ -59,6 +59,12 @@
   	<description></description>
   	<servlet-class>com.hand.Servlet.UpdateFilm</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ChangeFilm</servlet-name>
+  	<display-name>ChangeFilm</display-name>
+  	<description></description>
+  	<servlet-class>com.hand.Servlet.ChangeFilm</servlet-class>
+  </servlet>
 
   <servlet-mapping>
   	<servlet-name>login</servlet-name>
@@ -79,5 +85,9 @@
   <servlet-mapping>
   	<servlet-name>UpdateFilm</servlet-name>
   	<url-pattern>/UpdateFilm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ChangeFilm</servlet-name>
+  	<url-pattern>/ChangeFilm</url-pattern>
   </servlet-mapping>
 </web-app>

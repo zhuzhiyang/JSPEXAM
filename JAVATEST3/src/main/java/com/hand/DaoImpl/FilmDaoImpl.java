@@ -59,7 +59,7 @@ public class FilmDaoImpl implements FilmDao {
          Connection con=Con.getConnection();
          PreparedStatement pstmt = null;
          try {
-             pstmt =con.prepareStatement( sql );
+             pstmt =con.prepareStatement(sql);
             pstmt.setString(1, title);
              pstmt.setString (2 , description) ;
              pstmt.setInt ( 3, languageid) ;
@@ -141,5 +141,30 @@ public class FilmDaoImpl implements FilmDao {
 		
 		return f;
 	}
+	public void UpdatetoFilm (String title,String description,int languageid,int filmid) {
 
+        String sql = "update film  set title=?,description=?,language_id=? where film_id=?";
+        Connection con=Con.getConnection();
+        PreparedStatement pstmt = null;
+        try {
+            pstmt =con.prepareStatement(sql);
+           pstmt.setString(1, title);
+            pstmt.setString (2 , description) ;
+            pstmt.setInt ( 3, languageid) ;
+            pstmt.setInt ( 4, filmid) ;
+            System.out.println(title);
+            pstmt.executeUpdate () ;
+           
+        } catch (SQLException e) {
+            e .printStackTrace () ;
+        } finally {
+            try {
+              pstmt .close () ;
+                con .close () ;
+            } catch (SQLException e) {
+           
+                e .printStackTrace () ;
+            }
+        }
+   }
 }

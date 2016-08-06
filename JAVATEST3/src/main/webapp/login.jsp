@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="/login" method="post"> 
-<input type="text" name="username" >
+用户名：<input type="text" name="username" >
 <input type="submit" name="登录">
 </form>
 </body>
