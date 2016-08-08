@@ -1,5 +1,7 @@
 package com.hand.Dao;
 
-public interface RentalDao {
+import java.util.List;
 
+public interface RentalDao {
+	public void deletetoRental(List<Integer> ids);
 }

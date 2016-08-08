@@ -37,6 +37,7 @@ public class UpdateFilm extends HttpServlet {
         cfg=new Configuration();
          try {
 			cfg.setDirectoryForTemplateLoading(new File("templates"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +71,7 @@ public class UpdateFilm extends HttpServlet {
 	    Map map=new HashMap();
 	    map.put("film", f);
 	    map.put("name", name);
-	    Template t=cfg.getTemplate("test.ftl");
+	    Template t=cfg.getTemplate("test.ftl","utf-8");
 	    response.setContentType(t.getEncoding());
 	    Writer out=response.getWriter();
 	    try {

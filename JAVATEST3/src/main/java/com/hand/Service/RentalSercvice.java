@@ -1,5 +1,7 @@
 package com.hand.Service;
 
-public interface RentalSercvice {
+import java.util.List;
 
+public interface RentalSercvice {
+	public void deletetoRental (List<Integer> ids);
 }

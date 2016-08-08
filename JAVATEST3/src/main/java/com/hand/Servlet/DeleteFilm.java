@@ -1,6 +1,8 @@
 package com.hand.Servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +13,13 @@ import com.hand.Service.FilmCategoryService;
 import com.hand.Service.FilmService;
 import com.hand.Service.FilmtextService;
 import com.hand.Service.InventoryService;
+import com.hand.Service.RentalSercvice;
 import com.hand.ServiceImpl.FilmActorServiceImpl;
 import com.hand.ServiceImpl.FilmCategoryServiceImpl;
 import com.hand.ServiceImpl.FilmServiceImpl;
 import com.hand.ServiceImpl.FilmtextServiceImpl;
 import com.hand.ServiceImpl.InventoryServiceImpl;
+import com.hand.ServiceImpl.RentalSercviceImpl;
 
 /**
  * Servlet implementation class DeleteFilm
@@ -52,6 +56,9 @@ public class DeleteFilm extends HttpServlet {
 		}
 		System.out.println(id);
 		InventoryService is=new InventoryServiceImpl();
+		RentalSercvice rs=new RentalSercviceImpl();
+		List<Integer> rentalids=is.getInventoryidById(id);
+		rs.deletetoRental(rentalids);
 		is.deletetoInventory(id);
 		FilmActorService fas=new FilmActorServiceImpl();
 		fas.deletetoFilmActor(id);
